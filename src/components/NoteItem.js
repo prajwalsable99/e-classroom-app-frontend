@@ -4,7 +4,7 @@ import { useContext } from 'react';
 const NoteItem = (props) => {
 
     const context=useContext(NoteContext);
-    const {delNode}= context;
+    const {delNote}= context;
 
     const noteitem = props.note;
 
@@ -20,7 +20,7 @@ const NoteItem = (props) => {
             </div>
             < div className='container  algin-item-center'>
             <i className="fa-solid fa-pen"></i>
-            <i className="fa-solid fa-trash" onClick={()=>{delNode(noteitem._id)}}></i>
+            <i className="fa-solid fa-trash" onClick={()=>{delNote(noteitem._id)}}></i>
             </div>
         </div>
 
