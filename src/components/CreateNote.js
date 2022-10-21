@@ -14,6 +14,7 @@ const CreateNote = () => {
         e.preventDefault();
         console.log(note.title,note.desc);
         addNote(note.title,note.desc)
+        
     }
     const onChange=(e)=>{
         //VVIP
