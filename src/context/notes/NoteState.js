@@ -15,7 +15,7 @@ const NoteState = (props) => {
   const getAllNotes = async () => {
 
     // const host = "http://localhost:5000/api/notes/"
-    const atoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1MWE0NTk5Njc0OGViYjA3NjQ3N2I5In0sImlhdCI6MTY2NjI5NDg3M30.ECR1FqE_25RJv9XDAr93vIUV1Iq_dIyhrd_X6m3WGwo';
+    const atoken = localStorage.getItem('mytoken');
     const response = await fetch(`http://localhost:5000/api/notes/fetchAllNotes`, {
       method: 'GET',
       mode: 'cors',
@@ -42,7 +42,7 @@ const NoteState = (props) => {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1MWE0NTk5Njc0OGViYjA3NjQ3N2I5In0sImlhdCI6MTY2NjI5NDg3M30.ECR1FqE_25RJv9XDAr93vIUV1Iq_dIyhrd_X6m3WGwo'
+        'auth-token': localStorage.getItem('mytoken')
       },
 
       body: JSON.stringify({ title, desc })
@@ -58,7 +58,7 @@ const NoteState = (props) => {
     const newnotes = notes.filter((note) => { return note._id !== val })
     setNotes(newnotes);
 
-    const atoken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1MWE0NTk5Njc0OGViYjA3NjQ3N2I5In0sImlhdCI6MTY2NjI5NDg3M30.ECR1FqE_25RJv9XDAr93vIUV1Iq_dIyhrd_X6m3WGwo';
+    const atoken = localStorage.getItem('mytoken');
     const response = await fetch(`http://localhost:5000/api/notes/deleteNote/${val}`, {
       method: 'DELETE',
       mode: 'cors',
@@ -83,7 +83,7 @@ const NoteState = (props) => {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM1MWE0NTk5Njc0OGViYjA3NjQ3N2I5In0sImlhdCI6MTY2NjI5NDg3M30.ECR1FqE_25RJv9XDAr93vIUV1Iq_dIyhrd_X6m3WGwo'
+        'auth-token': localStorage.getItem('mytoken')
       },
 
       body: JSON.stringify({ title: note.title, desc: note.desc })

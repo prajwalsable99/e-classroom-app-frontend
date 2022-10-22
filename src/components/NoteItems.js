@@ -3,16 +3,22 @@ import NoteContext from '../context/notes/NoteContext'
 import NoteItem from './NoteItem'
 import { useContext } from 'react'
 import CreateNote from './CreateNote'
+import { useNavigate } from 'react-router-dom';
+
 const NoteItems = () => {
 
   const context = useContext(NoteContext);
   // const {notes,setNotes}= context;
   const { notes, getAllNotes,editNote } = context;
-
+  let history=useNavigate();
 
   useEffect(() => {
-
-    getAllNotes()
+    if(localStorage.getItem('mytoken')){
+      getAllNotes()
+    }else{
+      history('/Login')
+    }
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -64,7 +70,7 @@ const NoteItems = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">----</h1>
+              <h1 className="modal-title fs-5" id="exampleModalLabel">Update here</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
@@ -85,7 +91,7 @@ const NoteItems = () => {
             </div>
             <div className="modal-footer">
               <button  ref={ref2} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={handleclick}> Save changes</button>
+              <button type="button" disabled={ !(note.title.length!==0 && note.desc.length!==0)} className="btn btn-primary" onClick={handleclick}> Save changes</button>
             </div>
           </div>
         </div>
